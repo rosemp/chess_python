@@ -39,7 +39,7 @@ for i in range(5):
             continue
         pawn_pos[0] = int(split_string[0])
         pawn_pos[1] = int(split_string[1])
-        # Makes sure player doesn't pick a black space or the
+        # Make sure player doesn't pick a blank space or the
         # other player's piece.
         if player != board[pawn_pos[0]][pawn_pos[1]][0]:
             print("\nYou picked an invalid position.")
@@ -47,7 +47,7 @@ for i in range(5):
         # Makes sure player doesn't pick a piece other than a
         # pawn.
         if board[pawn_pos[0]][pawn_pos[1]][1] != "p":
-            print("\nYou picked the other player's piece.")
+            print("\nYou can only move pawns in this version of the program.")
             continue
     
         # Make sure that the user only moves a pawn 1 or 2 spaces
