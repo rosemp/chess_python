@@ -1,3 +1,5 @@
+### If you see this message, I successfully made a git commit and push!
+
 def print_board(board):
     print("Current chess board:")
     for i in range(len(board)):
