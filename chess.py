@@ -1,8 +1,8 @@
 
-def print_board(board):
+def print_board(current_board):
     print("Current chess board:")
-    for i in range(len(board)):
-        print(board[i])
+    for i in range(len(current_board)):
+        print(current_board[i])
 
 
 board = [["wr", "wn", "wb", "wk", "wq", "wb", "wn", "wr"],
@@ -55,9 +55,8 @@ for i in range(5):
     # Check that the user enters a valid pawn move
     while True:
         print("\nEnter the move you would like to do:")
-        inp_string = input("\n'forward 1', 'forward 2','attack left', \
-                           'attack right'")
-        #Input error checking
+        inp_string = input("\n'forward 1', 'forward 2','attack left','attack right'\n")
+        # Input error checking
         split_input = inp_string.split()
         move_type = split_input[0].lower()
         if move_type == "forward":
@@ -67,9 +66,8 @@ for i in range(5):
             
             move_dist = int(split_input[1])
             if move_dist < 1 or move_dist > 2:
-                 print("\nError: Invalid number. Move distance must be \
-                       1 or 2.")
-                 continue
+                print("\nError: Invalid number. Move distance must be 1 or 2.")
+                continue
             
             # If the player wants to move the pawn two spaces, check 
             # whether the pawn has been moved yet.
@@ -77,15 +75,13 @@ for i in range(5):
                 # White player
                 if player == "w":
                     if pawn_pos[0] != 1:
-                        print("\nThis pawn has already been moved, so you \
-                              can only move it by one space.")
+                        print("\nThis pawn has already been moved, so you can only move it by one space.")
                         move_dist = 1
                         continue
                 # Black player
                 else:
                     if pawn_pos[0] != 6:
-                        print("\nThis pawn has already been moved, so you \
-                              can only move it by one space.")
+                        print("\nThis pawn has already been moved, so you can only move it by one space.")
                         move_dist = 1
                         continue
                     
@@ -96,8 +92,7 @@ for i in range(5):
             else:
                 new_pawn_row -= move_dist
             if board[new_pawn_row][pawn_pos[1]] != "  ":
-                print("\nThere is already another piece in your selected \
-                      spot.")
+                print("\nThere is already another piece in your selected spot.")
                 continue
             
             # For a pawn moving two places, make sure it's not blocked
@@ -116,20 +111,35 @@ for i in range(5):
             attack_direction = split_input[1].lower()
             # attack_direction 'left' means pawn moves pawn_pos[1] -= 1
             # attack_direction 'right' means pawn moves pawn_pos[1] += 1
+            attack_pos = [0, 0]
             if attack_direction == 'left':
-                if player == "w":
-                    pass
-                else:
-                    pass
+                attack_pos[1] = pawn_pos[1] - 1
+                if attack_pos[1] < 0:
+                    print("\nError: Piece will go off the board")
+                    continue
+
             elif attack_direction == 'right':
-                if player == "w":
-                    pass
-                else:
-                    pass
+                attack_pos[1] = pawn_pos[1] + 1
+                # Check to make sure piece doesn't go off the board
+                if attack_pos[1] > 7:
+                    print("/nError: Piece will go off the board")
+                    continue
+            # Make sure player enters valid direction (left or right?)
             else:
-                print("\nError: Please enter an attack direction of 'left'\
-                      or 'right'")
+                print("\nError: Please enter an attack direction of 'left' or 'right'")
                 continue
+            if player == "w":
+                attack_pos[0] = pawn_pos[0] + 1
+                if board[attack_pos[0]][attack_pos[1]][0] != "b":
+                    print("Error: You can only attack a black piece")
+                    continue
+
+            else:
+                attack_pos[0] = pawn_pos[0] - 1
+                if board[attack_pos[0]][attack_pos[1]][0] != "w":
+                    print("Error: You can only attack a white piece")
+                    continue
+
         else:
             print("\nError: You must enter 'forward' or 'attack'.")
             continue
@@ -139,8 +149,8 @@ for i in range(5):
 
     # Now that the program has done all of the checks for the pawn,
     # it will move the pawn to its new spot.
+    board[pawn_pos[0]][pawn_pos[1]] = "  "
     if move_type == "forward":
-        board[pawn_pos[0]][pawn_pos[1]] = "  "
         if player == "w":
             pawn_pos[0] += move_dist
             board[pawn_pos[0]][pawn_pos[1]] = "wp"
@@ -148,7 +158,10 @@ for i in range(5):
             pawn_pos[0] -= move_dist
             board[pawn_pos[0]][pawn_pos[1]] = "bp"
     elif move_type == "attack":
-        pass
+        if player == "w":
+            board[attack_pos[0]][attack_pos[1]] = "wp"
+        else:
+            board[attack_pos[0]][attack_pos[1]] = "bp"
 
     # Print board after move has been made.
     print("\n")
