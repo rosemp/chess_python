@@ -12,8 +12,9 @@ for i in range(10):
     else:
         print("\nIt is the black player's turn.")
     
-    # Prompt player for their move and then make the move.    
-    move_piece(player)
+    # Prompt player for their move and then make the move. 
+    piece_pos = which_piece(player)
+    move_piece(player,piece_pos)
 
     # Print board after move has been made.
     print("\n")
