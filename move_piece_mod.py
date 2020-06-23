@@ -11,7 +11,7 @@ def which_piece(player):
     piece_pos = [0, 0]
     # Check that user enters the proper piece
     while True:
-        inp_string = input("\nWhich piece do you want to move?")
+        inp_string = input("\nWhich piece do you want to move?  ")
         piece_pos = parse_input_coords(inp_string)
         # Makes sure player doesn't pick a blank space or the
         # other player's piece.
@@ -27,18 +27,8 @@ def move_piece(player,piece_pos):
     
     while True:
         move_to = [0, 0]
-        inp_string = input("\nWhich square do you want to move it to?")
-        # The following code will be replaced by a call to parse_input_coords()
-        split_string = inp_string.split()
-        
-        for element in split_string:
-            check_numeric = element.isnumeric()
-            if not check_numeric:
-                print("\nYou have to enter integers.")
-                continue
-            
-        move_to[0] = int(split_string[0])
-        move_to[1] = int(split_string[1])
+        inp_string = input("\nWhich square do you want to move it to?  ")
+        move_to = parse_input_coords(inp_string)
         
         if piece_type == "p":
             valid_move = move_pawn(player,piece_pos,move_to)

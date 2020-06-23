@@ -1,4 +1,3 @@
-
 def print_board(current_board):
     print("   a |b |c |d |e |f |g |h ")
     print("  -------------------------")
@@ -8,7 +7,6 @@ def print_board(current_board):
             board_row_string += current_board[8-i][j] + "|"
         print(board_row_string)
         print("  -------------------------")
-
 
     
 def parse_input_coords(input_move):
@@ -28,6 +26,8 @@ def parse_input_coords(input_move):
         return [-1, -1]
 
     output_move = [0, 0]
-    output_move[0] = row
-    output_move[1] = column_letters.index(input_move[1])
+    # Row index in the board display goes in reverse order compared to the
+    # row index for the board array
+    output_move[0] = 8 - row
+    output_move[1] = column_letters.index(input_move[0])
     return output_move
