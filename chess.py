@@ -2,8 +2,8 @@ from game_state import *
 from utils import *
 from move_piece_mod import *
 
-print_board(board)
 
+print_board(board)
 # Loop for the main game (only running 5 moves at this time).
 player = "w"
 for i in range(10):
@@ -12,10 +12,9 @@ for i in range(10):
     else:
         print("\nIt is the black player's turn.")
     
-    # Prompt player for their move and then make the move. 
+    # Prompt player for their move and then make the move.
     piece_pos = which_piece(player)
     move_piece(player,piece_pos)
-
     # Print board after move has been made.
     print("\n")
     print_board(board)

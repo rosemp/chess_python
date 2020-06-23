@@ -5,21 +5,14 @@ from knight import *
 from rook import *
 from queen import *
 from king import *
-
+from utils import *
 
 def which_piece(player):
     piece_pos = [0, 0]
     # Check that user enters the proper piece
     while True:
         inp_string = input("\nWhich piece do you want to move?")
-        split_string = inp_string.split()
-        for element in split_string:
-            check_numeric = element.isnumeric()
-            if not check_numeric:
-                print("\nYou have to enter integers.")
-                continue
-        piece_pos[0] = int(split_string[0])
-        piece_pos[1] = int(split_string[1])
+        piece_pos = parse_input_coords(inp_string)
         # Makes sure player doesn't pick a blank space or the
         # other player's piece.
         if player != board[piece_pos[0]][piece_pos[1]][0]:
