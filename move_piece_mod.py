@@ -13,6 +13,8 @@ def which_piece(player):
     while True:
         inp_string = input("\nWhich piece do you want to move?  ")
         piece_pos = parse_input_coords(inp_string)
+        if piece_pos[0] == -1:
+            continue
         # Makes sure player doesn't pick a blank space or the
         # other player's piece.
         if player != board[piece_pos[0]][piece_pos[1]][0]:
@@ -29,6 +31,8 @@ def move_piece(player,piece_pos):
         move_to = [0, 0]
         inp_string = input("\nWhich square do you want to move it to?  ")
         move_to = parse_input_coords(inp_string)
+        if move_to[0] == -1:
+            continue
         
         if piece_type == "p":
             valid_move = move_pawn(player,piece_pos,move_to)

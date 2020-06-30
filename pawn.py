@@ -52,14 +52,9 @@ def move_pawn(player,piece_pos,move_to):
     elif horizontal_move == -1 or horizontal_move == 1:
         if (vertical_move == 1 and player == 'b') or \
             (vertical_move == -1 and player == 'w'):
-            if player == "w":
-                if board[move_to[0]][move_to[1]][0] != "b":
-                    print("Error: You can only attack a black piece")
-                    return False
-            else:
-                if board[move_to[0]][move_to[1]][0] != "w":
-                    print("Error: You can only attack a white piece")
-                    return False
+            if board[move_to[0]][move_to[1]][0] == player:
+                print("Error: You can't attack your own piece")
+                return False
         # Non-valid move
         else:
             print("\nA pawn can move forward by only one space when \

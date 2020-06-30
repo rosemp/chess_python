@@ -4,7 +4,7 @@ from move_piece_mod import *
 
 
 print_board(board)
-# Loop for the main game (only running 5 moves at this time).
+# Loop for the main game (only running 10 moves at this time).
 player = "w"
 for i in range(10):
     if player == "w":
