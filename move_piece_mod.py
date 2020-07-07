@@ -47,6 +47,8 @@ def move_piece(player,piece_pos):
         elif piece_type == "k":
             valid_move = move_king(player,piece_pos,move_to)
         
+        # NOTE: If there is no valid move for the selected piece, need to 
+        # break out of this loop.
         if valid_move:
             break
     

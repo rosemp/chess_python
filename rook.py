@@ -2,6 +2,7 @@
 
 Describe the module."""
 
+import numpy as np
 from game_state import *
 
 def move_rook(player,piece_pos,move_to):
@@ -21,9 +22,31 @@ def move_rook(player,piece_pos,move_to):
         print("Error: You can't attack your own piece")
         return False
 
-    vertical_move = move_to[0] - piece_pos[0]
-    horizontal_move = move_to[1] - piece_pos[1]
-    # Bookmark: Check if rook is blocked horizontally or vertically
+    vertical_dist = move_to[0] - piece_pos[0]
+    horizontal_dist = move_to[1] - piece_pos[1]
+    vertical_move = False
+    horizontal_move = False
+    if vertical_dist != 0:
+        vertical_move = True
+    elif horizontal_dist != 0:
+        horizontal_move = True
+    
+    # Check if rook is blocked horizontally or vertically
+    # Vertical move
+    # move_direct is either -1 or +1
+    move_direct = np.sign(vertical_dist)
+    for i in range(piece_pos[0] + move_direct, move_to[0], move_direct):
+        if board[i][piece_pos[1]] != "  ":
+           print("Error: Your piece is blocked!")
+           return False
+    # Horizontal move
+    # move_direct is either -1 or +1
+    move_direct = np.sign(horizontal_dist)
+    for j in range(piece_pos[1] + move_direct, move_to[1], move_direct):
+        if board[piece_pos[0]][j] != "  ":
+           print("Error: Your piece is blocked!")
+           return False
+        
     # This function returns True if no errors are detected.
     return True
     
