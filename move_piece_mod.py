@@ -30,6 +30,8 @@ def move_piece(player,piece_pos):
     while True:
         move_to = [0, 0]
         inp_string = input("\nWhich square do you want to move it to?  ")
+        if inp_string == "abort" or inp_string == "new piece":
+            break
         move_to = parse_input_coords(inp_string)
         if move_to[0] == -1:
             continue
@@ -48,7 +50,7 @@ def move_piece(player,piece_pos):
             valid_move = move_king(player,piece_pos,move_to)
         
         # NOTE: If there is no valid move for the selected piece, need to 
-        # break out of this loop.
+        # break out of this loop. This might be a difficult thing to code.
         if valid_move:
             break
     
@@ -57,5 +59,7 @@ def move_piece(player,piece_pos):
         piece = player + piece_type
         board[piece_pos[0]][piece_pos[1]] = "  "
         board[move_to[0]][move_to[1]] = piece
+    
+    return valid_move
         
     

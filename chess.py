@@ -13,8 +13,12 @@ for i in range(10):
         print("\nIt is the black player's turn.")
     
     # Prompt player for their move and then make the move.
-    piece_pos = which_piece(player)
-    move_piece(player,piece_pos)
+    while True:
+        piece_pos = which_piece(player)
+        valid = move_piece(player,piece_pos)
+        if valid:
+            break
+    
     # Print board after move has been made.
     print("\n")
     print_board(board)
