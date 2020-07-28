@@ -18,7 +18,7 @@ def move_rook(player,piece_pos,move_to):
         print("Error: Rook must move.")
         return False
 
-    if board[move_to[0]][move_to[1]][0] == player:
+    if player == board[move_to[0]][move_to[1]][0]:
         print("Error: You can't attack your own piece")
         return False
 
