@@ -65,6 +65,7 @@ def move_bishop(player,piece_pos,move_to):
 
 # loop over all squares between piece_pos and move_to
 # increment row and column index based on 'direction' variable
+# also add code to check if bishop is blocked
     # This function returns True if no errors are detected.
     return True
     
