@@ -4,9 +4,11 @@ from move_piece_mod import *
 
 
 print_board(board)
-# Loop for the main game (only running 10 moves at this time).
+# Loop for the main game (only running 20 moves at this time).
+# Turn this into an unbounded loop once checkmate functionality
+# has been implemented.
 player = "w"
-for i in range(10):
+for i in range(20):
     if player == "w":
         print("\nIt is the white player's turn.")
     else:

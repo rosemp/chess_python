@@ -12,47 +12,53 @@ def move_bishop(player,piece_pos,move_to):
 
     move_in_diagonal = False
     direction = 'Unknown'
-    i = piece_pos[0]
-    j = piece_pos[1]
 
     # First, check upper right diagonal
+    i = piece_pos[0]
+    j = piece_pos[1]
     while not move_in_diagonal:
         i -= 1
         j += 1
         if i < 0 or j > 7:
             break
         elif move_to == [i,j]:
-            direction == 'Upper right'
+            direction = 'upper right'
             move_in_diagonal = True
 
     # Second, check upper left diagonal
+    i = piece_pos[0]
+    j = piece_pos[1]
     while not move_in_diagonal:
         i -= 1
         j -= 1
         if i < 0 or j < 0:
             break
         elif move_to == [i, j]:
-            direction == 'Upper left'
+            direction = 'upper left'
             move_in_diagonal = True
 
     # Third, check lower left diagonal
+    i = piece_pos[0]
+    j = piece_pos[1]
     while not move_in_diagonal:
         i += 1
         j -= 1
         if i > 7 or j < 0:
             break
         elif move_to == [i, j]:
-            direction == 'Lower left'
+            direction = 'lower left'
             move_in_diagonal = True
 
     # Fourth, check lower right diagonal
+    i = piece_pos[0]
+    j = piece_pos[1]
     while not move_in_diagonal:
         i += 1
         j += 1
         if i > 7 or j > 7:
             break
         elif move_to == [i, j]:
-            direction == 'Lower right'
+            direction = 'lower right'
             move_in_diagonal = True
 
     if not move_in_diagonal:
@@ -63,9 +69,39 @@ def move_bishop(player,piece_pos,move_to):
         print("Error: You can't attack your own piece")
         return False
 
+
 # loop over all squares between piece_pos and move_to
 # increment row and column index based on 'direction' variable
-# also add code to check if bishop is blocked
+
+    #Check whether bishop is blocked by another piece
+    i = piece_pos[0]
+    j = piece_pos[1]
+    split_dir = direction.split()
+    vert_dir = split_dir[0]
+    horiz_dir = split_dir[1]
+    while True:
+        # Increment square which program is checking
+        if vert_dir == 'upper':
+            i -= 1
+        else:
+            i += 1
+            
+        if horiz_dir == 'right':
+            j += 1
+        else:
+            j -= 1
+            
+        # Terminate loop if at move_to
+        if move_to == [i, j]:
+            break
+        
+        # Check square if between piece_pos and move_to
+        if board[i][j] != "  ":
+            print("Error: your bishop is blocked!")
+            return False
+
+
+
     # This function returns True if no errors are detected.
     return True
     
