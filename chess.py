@@ -21,6 +21,8 @@ for i in range(20):
         if valid:
             break
     
+    # Do check check here
+
     # Print board after move has been made.
     print("\n")
     print_board(board)

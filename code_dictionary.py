@@ -1,6 +1,6 @@
 
 """
-Queen - Can move vertically or diagonally
+Queen - Can move vertically, horizontally, or diagonally/anti-diagonally
 
 Bishop - Can only move diagonally
 
