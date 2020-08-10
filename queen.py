@@ -4,7 +4,8 @@ Describe the module."""
 
 from game_state import *
 
-def move_queen(player,piece_pos,move_to):
+
+def move_queen(player, piece_pos, move_to):
     # Check that the user enters a valid queen move
     if move_to == piece_pos:
         print("Error: Queen must move.")
@@ -17,7 +18,6 @@ def move_queen(player,piece_pos,move_to):
     if piece_pos[0] == move_to[0] and piece_pos[1] < move_to[1]:
         direction = "horizontal right"
         valid_move = True
-
 
     # Check upper right diagonal
     i = piece_pos[0]
@@ -121,6 +121,3 @@ def move_queen(player,piece_pos,move_to):
             return False
     # This function returns True if no errors are detected.
     return True
-    
-
-

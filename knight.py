@@ -4,7 +4,8 @@ Describe the module."""
 
 from game_state import *
 
-def move_knight(player,piece_pos,move_to):
+
+def move_knight(player, piece_pos, move_to):
     # Check that the user enters a valid knight move
     possible_moves = []
     possible_moves.append([piece_pos[0] - 1, piece_pos[1] + 2])
@@ -28,10 +29,3 @@ def move_knight(player,piece_pos,move_to):
 
     # This function returns True if no errors are detected.
     return True
-    
-
-
-
-
-
-

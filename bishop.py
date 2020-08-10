@@ -4,7 +4,8 @@ Describe the module."""
 
 from game_state import *
 
-def move_bishop(player,piece_pos,move_to):
+
+def move_bishop(player, piece_pos, move_to):
     # Check that the user enters a valid bishop move
     if move_to == piece_pos:
         print("Error: Bishop must move.")
@@ -21,7 +22,7 @@ def move_bishop(player,piece_pos,move_to):
         j += 1
         if i < 0 or j > 7:
             break
-        elif move_to == [i,j]:
+        elif move_to == [i, j]:
             direction = 'upper right'
             move_in_diagonal = True
 
@@ -73,7 +74,7 @@ def move_bishop(player,piece_pos,move_to):
 # loop over all squares between piece_pos and move_to
 # increment row and column index based on 'direction' variable
 
-    #Check whether bishop is blocked by another piece
+    # Check whether bishop is blocked by another piece
     i = piece_pos[0]
     j = piece_pos[1]
     split_dir = direction.split()
@@ -99,8 +100,6 @@ def move_bishop(player,piece_pos,move_to):
         if board[i][j] != "  ":
             print("Error: your bishop is blocked!")
             return False
-
-
 
     # This function returns True if no errors are detected.
     return True

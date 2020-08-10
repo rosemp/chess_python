@@ -5,7 +5,8 @@ Describe the module."""
 import numpy as np
 from game_state import *
 
-def move_rook(player,piece_pos,move_to):
+
+def move_rook(player, piece_pos, move_to):
     """ This docstring probably should be here.
 
     Describe the function."""
