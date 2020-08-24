@@ -1,6 +1,6 @@
 
-
 from game_state import *
+
 
 # For check
 def check(player, square):
@@ -18,15 +18,6 @@ def check(player, square):
 
     """
     pass
-
-
-
-
-
-
-
-
-
 
 
 # For checkmate

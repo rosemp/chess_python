@@ -9,7 +9,7 @@ from utils import *
 
 
 def which_piece(player):
-    piece_pos = [0, 0]
+    # piece_pos = [0, 0] was here
     # Check that user enters the proper piece
     while True:
         inp_string = input("\nWhich piece do you want to move?  ")

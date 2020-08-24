@@ -4,11 +4,11 @@ from move_piece_mod import *
 
 
 print_board(board)
-# Loop for the main game (only running 20 moves at this time).
+# Loop for the main game (only running 25 moves at this time).
 # Turn this into an unbounded loop once checkmate functionality
 # has been implemented.
 player = "w"
-for i in range(20):
+for i in range(25):
     if player == "w":
         print("\nIt is the white player's turn.")
     else:
@@ -17,7 +17,7 @@ for i in range(20):
     # Prompt player for their move and then make the move.
     while True:
         piece_pos = which_piece(player)
-        valid = move_piece(player,piece_pos)
+        valid = move_piece(player, piece_pos)
         if valid:
             break
     
@@ -32,4 +32,3 @@ for i in range(20):
         player = "b"
     else:
         player = "w"
-

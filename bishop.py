@@ -1,6 +1,5 @@
-""" This docstring probably should be here.
-
-Describe the module."""
+"""This module does all the checks for the bishop
+   These checks include checking for ----"""
 
 from game_state import *
 
@@ -103,6 +102,3 @@ def move_bishop(player, piece_pos, move_to):
 
     # This function returns True if no errors are detected.
     return True
-    
-
-

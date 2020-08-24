@@ -83,11 +83,11 @@ def move_queen(player, piece_pos, move_to):
             valid_move = True
 
     if not valid_move:
-        print("Error: Queen must move diagonally")
+        print("\nError: Queen must move diagonally")
         return False
 
     if player == board[move_to[0]][move_to[1]][0]:
-        print("Error: You can't attack your own piece")
+        print("\nError: You can't attack your own piece")
         return False
 
     # loop over all squares between piece_pos and move_to
@@ -117,7 +117,7 @@ def move_queen(player, piece_pos, move_to):
 
         # Check square if between piece_pos and move_to
         if board[i][j] != "  ":
-            print("Error: Your queen is blocked!")
+            print("\nYour queen is blocked!")
             return False
     # This function returns True if no errors are detected.
     return True
