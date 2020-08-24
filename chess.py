@@ -14,14 +14,28 @@ for i in range(25):
     else:
         print("\nIt is the black player's turn.")
     
+    king_location = find_king(player)
+    if check(player, king_location):
+        print("Your king is in check!")
+        if player == "w":
+            white_player_check = True
+        else:
+            black_player_check = True
+        
     # Prompt player for their move and then make the move.
     while True:
         piece_pos = which_piece(player)
         valid = move_piece(player, piece_pos)
+        king_location = find_king(player)
+        if check(player, king_location):
+            print("You can't put yourself in check, please pick another move!")
+            valid = False
+            if player == "w":
+                white_player_check = True
+            else:
+                black_player_check = True
         if valid:
             break
-    
-    # Do check check here
 
     # Print board after move has been made.
     print("\n")
