@@ -16,7 +16,14 @@ def find_king(player):
             if board[row][col] == king_name:
                 return [row, col]
     
-    
+def in_bounds(square):
+    if square[0] < 0 or square[0] > 7:
+        return False
+    elif square[1] < 0 or square[1] > 7:
+        return False
+    else:
+        return True
+
 # For check
 def check(player, square):
     """
@@ -35,19 +42,48 @@ def check(player, square):
 
     """
 
-    pass
-
-    # PAWN CHECK: Check the two spots in front of the king from which the 
+    # PAWN CHECK: Check the two spots in front of the king from which the
     # opponent's pawns could threaten him.
+    if player == "w":
+        # Check upper right square for attacking pawn
+        in_bounds_list = [square[0] - 1, square[1] + 1]
+        if in_bounds(in_bounds_list):
+            if board[square[0] - 1][square[1] + 1] == "bp":
+                white_player_check = True
+                return True
+
+        in_bounds_list = [square[0] - 1, square[1] - 1]
+        if in_bounds(in_bounds_list):
+            if board[square[0] - 1][square[1] - 1] == "bp":
+                white_player_check = True
+                return True
+
+    elif player == "b":
+        in_bounds_list = [square[0] + 1, square[1] + 1]
+        if in_bounds(in_bounds_list):
+            if board[square[0] + 1][square[1] + 1] == "wp":
+                black_player_check = True
+                return True
+
+        in_bounds_list = [square[0] + 1, square[1] - 1]
+        if in_bounds(in_bounds_list):
+            if board[square[0] + 1][square[1] - 1] == "wp":
+                black_player_check = True
+                return True
     
     # KNIGHT CHECK: Check the eight spots around the king that a knight could
     # possibly attack from.
     
     # KING CHECK: Check the eight adjacent spots to king that the opponent
     # king could possibly attack from.
+    # Hw here
     
-    # BISHOP, ROOK, and QUEEN CHECK: Loop over 8 directions radially from 
-    # :square: (right, upper right, up, etc.). Check for attacking rooks and 
+    # BISHOP
+    # ROOK
+    # QUEEN
+
+    # Loop over 8 directions radially from
+    # :square (right, upper right, up, etc.). Check for attacking rooks and
     # queens in vertical and horizontal directions, and attacking bishops and
     # queens in diagonal direction. Also, in each direction, check each square
     # in succession to make sure they're empty so that the attacking piece is 
