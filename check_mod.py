@@ -34,13 +34,18 @@ def check(player, square):
                       is or where the king wants to move
     :return True if player is in check, false if player is not in check.
     
-    Note: When checking for check, you need to check for all of the opponents pieces, because any of those pieces can
-    put the king in check.
+    Note: When checking for check, you need to check for all of the opponent's 
+    pieces, because any of those pieces can put the king in check.
     
 
     More planning----(google docs)
 
     """
+    
+    if player == "w":
+        other_player = "b"
+    else:
+        other_player = "w"
 
     # PAWN CHECK: Check the two spots in front of the king from which the
     # opponent's pawns could threaten him.
@@ -73,10 +78,26 @@ def check(player, square):
     
     # KNIGHT CHECK: Check the eight spots around the king that a knight could
     # possibly attack from.
+    attack_square = []
+    attack_square.append([square[0] - 1, square[1] + 2])
+    attack_square.append([square[0] - 2, square[1] + 1])
+    attack_square.append([square[0] - 2, square[1] - 1])
+    attack_square.append([square[0] - 1, square[1] - 2])
+    attack_square.append([square[0] + 1, square[1] - 2])
+    attack_square.append([square[0] + 2, square[1] - 1])
+    attack_square.append([square[0] + 2, square[1] + 1])
+    attack_square.append([square[0] + 1, square[1] + 2])
     
-    # KING CHECK: Check the eight adjacent spots to king that the opponent
-    # king could possibly attack from.
-    # Hw here
+    for asquare in attack_square:
+        if in_bounds(asquare):
+            if board[asquare[0]][asquare[1]] == other_player + "n": 
+                if player == "w":
+                    white_player_check = True
+                else:
+                    black_player_check = True
+                return True
+    
+    # Note: King cannot put the other king in check
     
     # BISHOP
     # ROOK
