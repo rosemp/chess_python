@@ -17,10 +17,6 @@ for i in range(25):
     king_location = find_king(player)
     if check(player, king_location):
         print("Your king is in check!")
-        if player == "w":
-            white_player_check = True
-        else:
-            black_player_check = True
         
     # Prompt player for their move and then make the move.
     while True:
@@ -30,10 +26,7 @@ for i in range(25):
         if check(player, king_location):
             print("You can't put yourself in check, please pick another move!")
             valid = False
-            if player == "w":
-                white_player_check = True
-            else:
-                black_player_check = True
+
         if valid:
             break
 

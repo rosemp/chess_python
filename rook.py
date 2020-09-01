@@ -7,9 +7,6 @@ from game_state import *
 
 
 def move_rook(player, piece_pos, move_to):
-    """ This docstring probably should be here.
-
-    Describe the function."""
     # Check that the user enters a valid rook move
     # Makes sure rook stays in the same row or the same column
     if piece_pos[0] != move_to[0] and piece_pos[1] != move_to[1]:
