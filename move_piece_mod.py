@@ -5,6 +5,7 @@ from knight import *
 from rook import *
 from queen import *
 from king import *
+from check_mod import *
 from utils import *
 
 
@@ -49,6 +50,18 @@ def move_piece(player, piece_pos):
             valid_move = move_queen(player, piece_pos, move_to)
         elif piece_type == "k":
             valid_move = move_king(player, piece_pos, move_to)
+        
+        # If player is moving king, check that king is safe in new location
+        if piece_type == "k":
+            if check(player, move_to):
+                print("You can't put yourself in check, pick another move!")
+                valid_move = False
+        # For moving other pieces, check that king is safe after move.
+        else:
+            king_location = find_king(player)
+            if check(player, king_location):
+                print("You can't leave yourself in check, pick another move!")
+                valid_move = False
         
         if valid_move:
             break

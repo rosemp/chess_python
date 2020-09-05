@@ -94,61 +94,97 @@ def check(player, square):
     # Note: King cannot put the other king in check
     
     # BISHOP
+    # Check to the upper right of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row -= 1
+        col += 1
+        if row < 0 or col > 7:
+            break
+        if board[row][col] == other_player + "b":
+            return True
+        # Check for any piece that is in the way of a possible opponent's 
+        # bishop
+        elif board[row][col] != "  ":
+            break
+    # Check to the upper left of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row -= 1
+        col -= 1
+        if row < 0 or col < 0:
+            break
+        if board[row][col] == other_player + "b":
+            return True
+        elif board[row][col] != "  ":
+            break
+    # Check to the lower left of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row += 1
+        col -= 1
+        if row > 7 or col < 0:
+            break
+        if board[row][col] == other_player + "b":
+            return True
+        elif board[row][col] != "  ":
+            break
+    # Check to the lower right of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row += 1
+        col += 1
+        if row > 7 or col > 7:
+            break
+        if board[row][col] == other_player + "b":
+            return True
+        elif board[row][col] != "  ":
+            break
 
     # ROOK
     blocked = False
     # Check to the right of the king
-    for i in range(square[1], 8):
+    for i in range(square[1] + 1, 8):
+        # Check for any piece that is in the way of a possible opponent's rook
         if board[square[0]][i] == other_player + "r":
-            if not blocked:
-                return True
-        # Check for any piece that is in the way of a possible opponents rook
+            return True
         elif board[square[0]][i] != "  ":
-            blocked = True
             break
-
     blocked = False
     # Check above the king
-    for i in range(square[0], -1, -1):
+    for i in range(square[0] - 1, -1, -1):
         if board[i][square[1]] == other_player + "r":
-            if not blocked:
-                return True
-        # Check for any piece that is in the way of a possible opponents rook
+            return True
         elif board[i][square[1]] != "  ":
-            blocked = True
             break
-
     blocked = False
     # Check to the left of the king
-    for i in range(square[1], -1, -1):
+    for i in range(square[1] - 1, -1, -1):
         if board[square[0]][i] == other_player + "r":
-            if not blocked:
-                return True
-        # Check for any piece that is in the way of a possible opponents rook
+            return True
         elif board[square[0]][i] != "  ":
-            blocked = True
             break
-
     blocked = False
     # Check below the king
-    for i in range(square[0], +8):
+    for i in range(square[0] + 1, 8):
         if board[i][square[1]] == other_player + "r":
-            if not blocked:
-                return True
-        # Check for any piece that is in the way of a possible opponents rook
+            return True
         elif board[i][square[1]] != "  ":
-            blocked = True
             break
 
     # QUEEN
     # For hw
 
-    # Loop over 8 directions radially from
-    # :square (right, upper right, up, etc.). Check for attacking rooks and
-    # queens in vertical and horizontal directions, and attacking bishops and
-    # queens in diagonal direction. Also, in each direction, check each square
-    # in succession to make sure they're empty so that the attacking piece is 
-    # actually putting the king in check.
+    #If no attacking pieces are putting the king in check, return False
+    return False
 
 
 # For checkmate

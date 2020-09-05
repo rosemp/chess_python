@@ -4,11 +4,10 @@ from move_piece_mod import *
 
 
 print_board(board)
-# Loop for the main game (only running 25 moves at this time).
-# Turn this into an unbounded loop once checkmate functionality
-# has been implemented.
+# White player moves first
 player = "w"
-for i in range(25):
+# Game will run indefinitely in current form
+while True:
     if player == "w":
         print("\nIt is the white player's turn.")
     else:
@@ -22,11 +21,6 @@ for i in range(25):
     while True:
         piece_pos = which_piece(player)
         valid = move_piece(player, piece_pos)
-        king_location = find_king(player)
-        if check(player, king_location):
-            print("You can't put yourself in check, please pick another move!")
-            valid = False
-
         if valid:
             break
 
