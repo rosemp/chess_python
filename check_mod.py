@@ -49,6 +49,8 @@ def check(player, square):
     else:
         other_player = "w"
 
+    # Note: A king cannot put another king in check
+
     # PAWN CHECK: Check the two spots in front of the king from which the
     # opponent's pawns could threaten him.
     if player == "w":
@@ -91,8 +93,6 @@ def check(player, square):
             if board[asquare[0]][asquare[1]] == other_player + "n":
                 return True
     
-    # Note: King cannot put the other king in check
-    
     # BISHOP
     # Check to the upper right of the king
     blocked = False
@@ -105,8 +105,7 @@ def check(player, square):
             break
         if board[row][col] == other_player + "b":
             return True
-        # Check for any piece that is in the way of a possible opponent's 
-        # bishop
+        # Check for any piece that is in the way of a possible opponent's bishop
         elif board[row][col] != "  ":
             break
     # Check to the upper left of the king
@@ -181,9 +180,90 @@ def check(player, square):
             break
 
     # QUEEN
-    # For hw
+    # First lets check all four horizontal/vertical paths around the king
+    blocked = False
+    # Check to the right of the king
+    for i in range(square[1] + 1, 8):
+        # Check for any piece that is in the way of a possible opponent's queen
+        if board[square[0]][i] == other_player + "q":
+            return True
+        elif board[square[0]][i] != "  ":
+            break
+    blocked = False
+    # Check above the king
+    for i in range(square[0] - 1, -1, -1):
+        if board[i][square[1]] == other_player + "q":
+            return True
+        elif board[i][square[1]] != "  ":
+            break
+    blocked = False
+    # Check to the left of the king
+    for i in range(square[1] - 1, -1, -1):
+        if board[square[0]][i] == other_player + "q":
+            return True
+        elif board[square[0]][i] != "  ":
+            break
+    blocked = False
+    # Check below the king
+    for i in range(square[0] + 1, 8):
+        if board[i][square[1]] == other_player + "q":
+            return True
+        elif board[i][square[1]] != "  ":
+            break
+    # Now we check the four corners surrounding the king
+    row = square[0]
+    col = square[1]
+    while True:
+        row -= 1
+        col += 1
+        if row < 0 or col > 7:
+            break
+        if board[row][col] == other_player + "q":
+            return True
+        # Check for any piece that is in the way of a possible opponent's queen
+        elif board[row][col] != "  ":
+            break
+    # Check to the upper left of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row -= 1
+        col -= 1
+        if row < 0 or col < 0:
+            break
+        if board[row][col] == other_player + "q":
+            return True
+        elif board[row][col] != "  ":
+            break
+    # Check to the lower left of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row += 1
+        col -= 1
+        if row > 7 or col < 0:
+            break
+        if board[row][col] == other_player + "q":
+            return True
+        elif board[row][col] != "  ":
+            break
+    # Check to the lower right of the king
+    blocked = False
+    row = square[0]
+    col = square[1]
+    while True:
+        row += 1
+        col += 1
+        if row > 7 or col > 7:
+            break
+        if board[row][col] == other_player + "q":
+            return True
+        elif board[row][col] != "  ":
+            break
 
-    #If no attacking pieces are putting the king in check, return False
+    # If no attacking pieces are putting the king in check, return False
     return False
 
 

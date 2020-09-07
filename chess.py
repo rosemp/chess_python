@@ -15,7 +15,7 @@ while True:
     
     king_location = find_king(player)
     if check(player, king_location):
-        print("Your king is in check!")
+        print("\nYour king is in check!")
         
     # Prompt player for their move and then make the move.
     while True:

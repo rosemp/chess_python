@@ -46,6 +46,3 @@ def move_rook(player, piece_pos, move_to):
         
     # This function returns True if no errors are detected.
     return True
-    
-
-
