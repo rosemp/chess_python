@@ -95,7 +95,6 @@ def check(player, square):
     
     # BISHOP
     # Check to the upper right of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -109,7 +108,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the upper left of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -122,7 +120,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the lower left of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -135,7 +132,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the lower right of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -149,7 +145,6 @@ def check(player, square):
             break
 
     # ROOK
-    blocked = False
     # Check to the right of the king
     for i in range(square[1] + 1, 8):
         # Check for any piece that is in the way of a possible opponent's rook
@@ -157,21 +152,18 @@ def check(player, square):
             return True
         elif board[square[0]][i] != "  ":
             break
-    blocked = False
     # Check above the king
     for i in range(square[0] - 1, -1, -1):
         if board[i][square[1]] == other_player + "r":
             return True
         elif board[i][square[1]] != "  ":
             break
-    blocked = False
     # Check to the left of the king
     for i in range(square[1] - 1, -1, -1):
         if board[square[0]][i] == other_player + "r":
             return True
         elif board[square[0]][i] != "  ":
             break
-    blocked = False
     # Check below the king
     for i in range(square[0] + 1, 8):
         if board[i][square[1]] == other_player + "r":
@@ -181,7 +173,6 @@ def check(player, square):
 
     # QUEEN
     # First lets check all four horizontal/vertical paths around the king
-    blocked = False
     # Check to the right of the king
     for i in range(square[1] + 1, 8):
         # Check for any piece that is in the way of a possible opponent's queen
@@ -189,21 +180,18 @@ def check(player, square):
             return True
         elif board[square[0]][i] != "  ":
             break
-    blocked = False
     # Check above the king
     for i in range(square[0] - 1, -1, -1):
         if board[i][square[1]] == other_player + "q":
             return True
         elif board[i][square[1]] != "  ":
             break
-    blocked = False
     # Check to the left of the king
     for i in range(square[1] - 1, -1, -1):
         if board[square[0]][i] == other_player + "q":
             return True
         elif board[square[0]][i] != "  ":
             break
-    blocked = False
     # Check below the king
     for i in range(square[0] + 1, 8):
         if board[i][square[1]] == other_player + "q":
@@ -224,7 +212,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the upper left of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -237,7 +224,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the lower left of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -250,7 +236,6 @@ def check(player, square):
         elif board[row][col] != "  ":
             break
     # Check to the lower right of the king
-    blocked = False
     row = square[0]
     col = square[1]
     while True:
@@ -276,5 +261,12 @@ def check_mate(player):
     Note: If the code loops over the usual moves and finds that the king cannot
     move out of check safely, it is declared checkmate, and the opponent wins.
 
+    Three things to check for checkmate:
+    1. Check the 8 squares the king would be allowed to move to
+    2. Check all pieces on the king's team to see if they can counter attack the
+    attacking piece (piece putting the king in check)
+    3. Check all the pieces on the king's team to see if any of them can block the
+    attacking piece
     """
+        
     pass

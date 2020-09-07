@@ -15,7 +15,13 @@ while True:
     
     king_location = find_king(player)
     if check(player, king_location):
-        print("\nYour king is in check!")
+        if check_mate(player):
+            if player == "w":
+                print("\nGame declared checkmate. Black team wins.")
+            else:
+                print("\nGame declared checkmate. White team wins.")
+        else:
+            print("\nYour king is in check!")
         
     # Prompt player for their move and then make the move.
     while True:
