@@ -8,20 +8,28 @@ print_board(board)
 player = "w"
 # Game will run indefinitely in current form
 while True:
-    if player == "w":
-        print("\nIt is the white player's turn.")
-    else:
-        print("\nIt is the black player's turn.")
     
     king_location = find_king(player)
     if check(player, king_location):
         if check_mate(player):
             if player == "w":
                 print("\nGame declared checkmate. Black team wins.")
+                break
             else:
                 print("\nGame declared checkmate. White team wins.")
+                break
         else:
-            print("\nYour king is in check!")
+            if player == "w":
+                print("\nWhite king is in check!")
+                break
+            else:
+                print("\nBlack king is in check!")
+                break
+    else:
+        if player == "w":
+            print("\nIt is the white player's turn.")
+        else:
+            print("\nIt is the black player's turn.")
         
     # Prompt player for their move and then make the move.
     while True:

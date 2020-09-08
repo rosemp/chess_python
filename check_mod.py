@@ -265,8 +265,42 @@ def check_mate(player):
     1. Check the 8 squares the king would be allowed to move to
     2. Check all pieces on the king's team to see if they can counter attack the
     attacking piece (piece putting the king in check)
-    3. Check all the pieces on the king's team to see if any of them can block the
-    attacking piece
+    3. Check all the pieces on the king's team to see if any of them can block 
+    the attacking piece
     """
+    
+    # Square in which king is currently located
+    # ksq[0] is the row
+    # ksq[1] is the column
+    ksq = find_king(player)
+    
+    # The 8 squares the king could possibly move to
+    possible_moves = [[ksq[0]    ,ksq[1] + 1],
+                      [ksq[0] - 1,ksq[1] + 1],
+                      [ksq[0] - 1,ksq[1]    ],
+                      [ksq[0] - 1,ksq[1] - 1],
+                      [ksq[0]    ,ksq[1] - 1],
+                      [ksq[0] + 1,ksq[1] - 1],
+                      [ksq[0] + 1,ksq[1]    ],
+                      [ksq[0] + 1,ksq[1] + 1]]
+    
+    # Loop over the 8 squares, return False if you find a square 
+    # that the king can safely move to.
+    for pm in possible_moves:
+        if in_bounds(pm):
+            square_check = board[pm[0]][pm[1]]
+            if square_check[0] != player:
+                if not check(player, pm):
+                    return False
+    
+    # TO DO: Check if one of player's pieces can counter-attack
+    # the piece putting the king in check.
+                
+    # TO DO: Check if one of player's pieces can block
+    # the piece putting the king in check.
+                
+    return True
+                
         
-    pass
+        
+    
