@@ -53,13 +53,13 @@ def move_piece(player, piece_pos):
         
         # If player is moving king, check that king is safe in new location
         if piece_type == "k":
-            if check(player, move_to):
+            if check(player, move_to) != [-1, -1]:
                 print("\nError: You can't put yourself in check, pick another move!")
                 valid_move = False
         # For moving other pieces, check that king is safe after move.
         else:
             king_location = find_king(player)
-            if check(player, king_location):
+            if check(player, king_location) != [-1, -1]:
                 print("\nError: You can't leave yourself in check, pick another move!")
                 valid_move = False
         

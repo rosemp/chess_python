@@ -14,6 +14,9 @@ def parse_input_coords(input_move):
        row and column index of the chess piece or the square the player wants
        to move it to."""
     column_letters = "abcdefgh"
+    if len(input_move) < 2:
+        print("Error: Please enter a character and a number")
+        return [-1, -1]
     if input_move[0] not in column_letters:
         print("Error: First character must be a letter")
         return [-1, -1]

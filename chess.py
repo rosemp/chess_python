@@ -10,7 +10,7 @@ player = "w"
 while True:
     
     king_location = find_king(player)
-    if check(player, king_location):
+    if check(player, king_location) != [-1, -1]:
         if check_mate(player):
             if player == "w":
                 print("\nGame declared checkmate. Black team wins.")
@@ -21,10 +21,9 @@ while True:
         else:
             if player == "w":
                 print("\nWhite king is in check!")
-                break
             else:
                 print("\nBlack king is in check!")
-                break
+
     else:
         if player == "w":
             print("\nIt is the white player's turn.")
